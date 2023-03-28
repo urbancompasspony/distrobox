@@ -2,7 +2,7 @@ sudo apt install fuse-overlayfs
 
 mkdir -p /media/nathandrake/SDCard
 
-On SteamOS Konsole:
+# On Terminal:
 curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix /media/$USER/SDCard/DistroBox
 
 TO BASHRC:
@@ -24,6 +24,7 @@ Edit /etc/containers/storage.conf:
 [storage]
 graphroot = "/run/media/mmcblk0p1/DistroBox/Volumes"
 runroot = "/run/media/mmcblk0p1/DistroBox/Storage"
+driver = "overlay"
 
 [storage.options.overlay]
 mount_program = "/usr/bin/fuse-overlayfs"
