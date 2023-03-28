@@ -1,16 +1,14 @@
 sudo apt install fuse-overlayfs
 
-mkdir -p /media/$USER/SDCard/DistroBox/Volumes
-mkdir -p /media/$USER/SDCard/DistroBox/Storage
+mkdir -p $HOME/.local/Distrobox/Volumes
+mkdir -p $HOME/.local/Distrobox/Storage
 
 # On Terminal:
-curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix /media/$USER/SDCard/DistroBox
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix $HOME/.local/Distrobox
 
 TO BASHRC:
-[ -d /media/$USER/SDCard/DistroBox ] && {
-  export PATH=/media/$USER/SDCard/DistroBox/bin:$PATH
-  xhost +si:localuser:$USER
-  }
+export PATH=$HOME/.local/bin:$PATH
+xhost +si:localuser:$USER
 
 # Setup subuid/subgid
 sudo touch /etc/subuid
@@ -23,8 +21,8 @@ sudo usermod --add-subgids 10000-75535 $USER
 sudo nano /etc/containers/storage.conf
 
 [storage]
-graphroot = "/media/$USER/SDCard/DistroBox/Volumes"
-runroot = "/media/$USER/SDCard/DistroBox/Storage"
+graphroot = "$HOME/.local/Distrobox/Volumes"
+runroot = "$HOME/.local/Distrobox/Storage"
 driver = "overlay"
 [storage.options.overlay]
 mount_program = "/usr/bin/fuse-overlayfs"
