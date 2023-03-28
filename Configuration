@@ -1,7 +1,7 @@
 sudo apt install fuse-overlayfs
 
-mkdir -p /media/nathandrake/SDCard/DistroBox/Volumes
-mkdir -p /media/nathandrake/SDCard/DistroBox/Storage
+mkdir -p /media/$USER/SDCard/DistroBox/Volumes
+mkdir -p /media/$USER/SDCard/DistroBox/Storage
 
 # On Terminal:
 curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix /media/$USER/SDCard/DistroBox
