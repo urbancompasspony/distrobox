@@ -1,0 +1,32 @@
+sudo apt install fuse-overlayfs
+
+mkdir -p /media/nathandrake/SDCard
+
+On SteamOS Konsole:
+curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix /media/$USER/SDCard/DistroBox
+
+TO BASHRC:
+[ -d /media/$USER/SDCard/DistroBox ] && {
+  export PATH=/media/$USER/SDCard/DistroBox/bin:$PATH
+  xhost +si:localuser:$USER
+  }
+
+# Setup subuid/subgid
+sudo touch /etc/subuid
+sudo touch /etc/subgid
+sudo chmod 664 /etc/subuid /etc/subgid
+
+sudo usermod --add-subuids 10000-75535 deck 
+sudo usermod --add-subgids 10000-75535 deck
+
+Edit /etc/containers/storage.conf:
+
+[storage]
+graphroot = "/run/media/mmcblk0p1/DistroBox/Volumes"
+runroot = "/run/media/mmcblk0p1/DistroBox/Storage"
+
+[storage.options.overlay]
+mount_program = "/usr/bin/fuse-overlayfs"
+mountopt = "nodev,index=off"
+
+That's all folks!
