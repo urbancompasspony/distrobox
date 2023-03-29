@@ -7,7 +7,7 @@ mkdir -p $HOME/.local/Distrobox/Storage
 curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sh -s -- --prefix $HOME/.local/Distrobox
 
 TO BASHRC:
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/Distrobox/bin:$PATH
 xhost +si:localuser:$USER
 
 # Setup subuid/subgid
