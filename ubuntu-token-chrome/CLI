@@ -1,0 +1,4 @@
+
+distrobox create -i ubuntu:24.04
+distrobox enter ubuntu-24-04
+
